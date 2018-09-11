@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -8,6 +9,10 @@ namespace digitsRecognizer
     {
         static void Main(string[] args)
         {
+            Stopwatch predictionSW = new Stopwatch();
+            Stopwatch wholeProgramSW = new Stopwatch();
+            wholeProgramSW.Start();
+
             var trainingRecords = File.ReadAllLines("trainingsample.csv")
                 .Skip(1)
                 .Select(x => x.Split(','))
@@ -26,7 +31,9 @@ namespace digitsRecognizer
 
             int correctlyRecognized = 0;
 
+            predictionSW.Start();
             var predictions = classifier.PredictAll(validationRecords.Select(x => x.pixels).ToArray());
+            predictionSW.Stop();
 
             for (int i = 0; i < validationRecords.Length; i++)
             {
@@ -37,7 +44,10 @@ namespace digitsRecognizer
             }
 
             double percentCorrectlyRecognized = ((double) correctlyRecognized) /validationRecords.Length;
+            wholeProgramSW.Stop();
             Console.WriteLine($"{correctlyRecognized}/{validationRecords.Length}={percentCorrectlyRecognized}");
+            Console.WriteLine($"predictions: {predictionSW.Elapsed}");
+            Console.WriteLine($"whole app: {wholeProgramSW.Elapsed}");
             Console.WriteLine("enter to exit");
             Console.ReadLine();
         }
