@@ -40,7 +40,7 @@ namespace digitsRecognizer
                 var diff = pixelsA[i] - pixelsB[i];
                 sum += diff * diff;
             }
-            return Math.Sqrt(sum);
+            return sum;
         }
     }
 }
