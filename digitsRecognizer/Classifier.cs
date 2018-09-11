@@ -37,7 +37,8 @@ namespace digitsRecognizer
             double sum = 0;
             for (int i = 0; i < pixelsA.Length; i++)
             {
-                sum += Math.Pow(pixelsA[i] - pixelsB[i], 2);
+                var diff = pixelsA[i] - pixelsB[i];
+                sum += diff * diff;
             }
             return Math.Sqrt(sum);
         }

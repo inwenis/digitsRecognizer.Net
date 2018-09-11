@@ -48,8 +48,8 @@ namespace digitsRecognizer
             Console.WriteLine($"{correctlyRecognized}/{validationRecords.Length}={percentCorrectlyRecognized}");
             Console.WriteLine($"predictions: {predictionSW.Elapsed}");
             Console.WriteLine($"whole app: {wholeProgramSW.Elapsed}");
-            Console.WriteLine("enter to exit");
-            Console.ReadLine();
+//            Console.WriteLine("enter to exit");
+//            Console.ReadLine();
         }
 
     }
