@@ -24,6 +24,7 @@ namespace digitsRecognizer
         public int Predict(int[] pixels)
         {
             var closestDigit = _trainingRecords
+                .AsParallel()
                 .Select(x => new {distance = CalculateDistance(pixels, x.pixels), x.digit})
                 .OrderBy(x => x.distance)
                 .First().digit;
